@@ -1,0 +1,73 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+   <meta charset="utf-8">
+   <meta name="viewport" content="width=device-width, initial-scale=1">
+    <link rel="stylesheet" type="text/css" href="style.css"> 
+      <title>JS ANALOG CLOCK</title>
+  </head>
+ <body>
+    <div class="Wrapper">
+     <h1>JS ANALOG CLOCK..</h1>
+      <div class="Container">
+        <div class="clock">
+          <div>
+            <div class="info date"></div>
+             <div class="info day"></div>
+        </div>
+            <div class="dot"></div>
+              <div class="hours-hand" id="hours"></div>
+                <div class="minutes-hand" id="minutes"></div>
+               <div class="seconds-hand" id="seconds"></div>
+          </div>
+     </div>
+  </div>
+   
+
+<script>
+  function clock() {
+  var weekday = [
+        "Sunday",
+        "Monday",
+        "Tuesday",
+        "Wednesday",
+        "Thursday",
+        "Friday",
+        "Saturday"
+      ],
+      d = new Date(),
+      h = d.getHours(),
+      m = d.getMinutes(),
+      s = d.getSeconds(),
+      date = d.getDate(),
+      month = d.getMonth() + 1,
+      year = d.getFullYear(),
+           
+      hDeg = h * 30 + m * (360/720),
+      mDeg = m * 6 + s * (360/3600),
+      sDeg = s * 6,
+      
+      hEl = document.querySelector('.hours-hand'),
+      mEl = document.querySelector('.minutes-hand'),
+      sEl = document.querySelector('.seconds-hand'),
+      dateEl = document.querySelector('.date'),
+      dayEl = document.querySelector('.day');
+  
+      var day = weekday[d.getDay()];
+   if(month < 9) {
+    month = "0" + month;
+  }
+  
+  hEl.style.transform = "rotate("+hDeg+"deg)";
+  mEl.style.transform = "rotate("+mDeg+"deg)";
+  sEl.style.transform = "rotate("+sDeg+"deg)";
+  dateEl.innerHTML = date+"/"+month+"/"+year;
+  dayEl.innerHTML = day;
+}
+
+setInterval("clock()", 1000);
+
+
+</script>
+   </body>
+ </html>
